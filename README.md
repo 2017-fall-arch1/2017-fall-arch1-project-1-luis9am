@@ -1,3 +1,10 @@
+# arch1-Binary-Search-Tree
+
+* This code contains and implements a BST of strings for employees names
+* A demo program that tests the program i/o
+
+------------------------------------------------------------------------------------
+
 # arch1-linked-list-demo
 
 This directory contains:
