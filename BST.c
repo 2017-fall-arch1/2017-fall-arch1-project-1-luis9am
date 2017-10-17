@@ -4,21 +4,21 @@
 #include "BST.h"		
 
 
- int main(){
-  BNode *root = root = NULL;
+int main(){
+  struct BNode *root = NULL;
   char *str;
 }
 /* creates new Bnode */
-BNode* newBNode(BNode *root, char *newEmp){
-  BNode *np = (BNode*) malloc(sizeof(BNode));
+  struct BNode* newBNode(struct BNode *root, char *newEmp){
+  struct BNode *np = (struct BNode*) malloc(sizeof(BNode));
   np->str = malloc(strlen(newEmp));
-  BNode->left = NULL;
-  BNode->right = NULL;
-  return BNode;
+  np->left = NULL;
+  np->right = NULL;
+  return np;
 }
 
 /* goes through tree to find least-most root */
-BNode* findMin(BNode *root){
+struct BNode* findMin(struct BNode *root){
   if(root == NULL)
     return NULL;
   else if(root->left)
@@ -28,7 +28,7 @@ BNode* findMin(BNode *root){
 }
 
 /* goes through BNodes to find greatest root */
-BNode* findMax(BNode *root){
+struct BNode* findMax(struct BNode *root){
   if(root == NULL)
     return NULL;
   else if(root->right)
@@ -38,7 +38,7 @@ BNode* findMax(BNode *root){
 }
 
 /* adds BNode to tree */
-BNode* bstAdd(BNode *root, char *emp){
+struct BNode* bstAdd(struct BNode *root, char *emp){
 
   if(root == NULL){
     root = newBNode(employee);
@@ -57,7 +57,7 @@ BNode* bstAdd(BNode *root, char *emp){
 }
 
 /* delete node from tree */
-BNode* bstDel(BNode *root, char *emp){
+struct BNode* bstDel(struct BNode *root, char *emp){
   if(root == NULL)
     return root;
 
@@ -86,7 +86,7 @@ BNode* bstDel(BNode *root, char *emp){
   return root;
 }
 
-void bstPrint(BNode root){
+void bstPrint(struct BNode root){
   if(root ==NULL)
     return;
 
