@@ -99,3 +99,35 @@ int llCheck(LList *lp)
   }
   return 0;
 }
+
+/* discards first item and returns the string it contains */
+void llGet(LList *lp)
+{
+  LLItem *ip;
+  doCheck(lp);  
+  ip = lp->first;
+    if(!ip)
+      assert(lp->last == 0);
+    else{
+      printf("**Removed item: <%s>\n \n", ip->str);
+      free(lp);
+      lp->first = ip->next;
+    }
+  doCheck(lp);
+}
+
+/* prints the reverse order of items inside list */
+void llReverse(LList *lp)
+{
+  LLItem *ip;
+  int count = 1;
+  doCheck(lp);
+  //if(!ip)
+  //  assert(lp->last==0);
+  //else{
+    for(ip = lp->last; ip; ip = ip->prev){
+      printf(" %d: <%s>\n",count, ip->str);
+	count++;
+    }
+    //}
+}

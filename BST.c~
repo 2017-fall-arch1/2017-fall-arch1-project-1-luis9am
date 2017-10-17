@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "BST.h"
+
+
+int doCheck = 1;
+
+#define doCheck(_lp) (BST

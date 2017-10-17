@@ -24,14 +24,33 @@ int main()
   LList *lp = llAlloc();	/* make empty list */
 
   llPrint(lp, "List contents, prior to reading input:");
+  printf("- - - - - - - - - - -\n");
 
   while (gets_n(buf, 100))	/* build list */
     llPut(lp, buf);
 
   llPrint(lp, "List contents, after building list:");
 
-  llMakeEmpty(lp);
+  //new - - - - - -
 
+  printf("- - - - - - - - - - -\n");
+
+  printf("List prints reverse: \n");
+  llReverse(lp);              /* implementation for llReverse() */
+
+  // - - - - = = = = = = = = - - - -
+  
+  printf("- - - - - - - - - - -\n");
+  
+  llGet(lp);                  /* implementation for llGet() */
+  llPrint(lp, "List after deletion of first item: ");
+
+  printf("- - - - - - - - - - -\n");
+
+  //wen - - - - - -
+  
+  llMakeEmpty(lp);
+  
   printf("After emptying the list...");
   llPrint(lp, 0);		/* default message */
 

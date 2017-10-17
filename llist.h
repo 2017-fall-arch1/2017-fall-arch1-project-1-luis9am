@@ -4,7 +4,7 @@
 
 /* a linked-list item */
 typedef struct LLItem_s {
-  struct LLItem_s *next; 
+  struct LLItem_s *next, *prev;      /* added prev */ 
   char *str;
 } LLItem;
 
@@ -32,5 +32,15 @@ void llPrint(LList *lp, char *msg);
 
 /* check llist consistency, always returns zero */
 int llCheck(LList *lp);
+
+//new - - -- - -
+
+/* discards first item and retruns containted string */
+void llGet(LList *lp);
+
+/* reverses the order of list and prints */
+void llReverse(LList *lp);
+
+//wen - - - - - -
 
 #endif	/* included */
