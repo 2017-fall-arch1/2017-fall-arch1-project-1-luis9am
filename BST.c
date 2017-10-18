@@ -5,10 +5,10 @@
 
 
 
-/* creates new Bnode */
-BNode *newBNode(char *newEmp)
+/* allocates and creates new Bnode */
+struct BNode *newBNode(char *newEmp)
  {
-  BNode *np = (BNode *) malloc(sizeof(BNode));
+  struct BNode *np = (BNode *) malloc(sizeof(BNode));
   np->str = malloc(strlen(newEmp)+1);
   np->left = NULL;
   np->right = NULL;
@@ -16,7 +16,7 @@ BNode *newBNode(char *newEmp)
 }
 
 /* goes through tree to find least-most root */
-BNode *findMin(struct BNode *root){
+struct BNode *findMin(BNode *root){
   if(root == NULL)
     return NULL;
   else if(root->left)
@@ -26,7 +26,7 @@ BNode *findMin(struct BNode *root){
 }
 
 /* goes through BNodes to find greatest root */
-BNode *findMax(BNode *root)
+struct BNode *findMax(BNode *root)
 {
   if(root == NULL)
     return NULL;
@@ -37,7 +37,7 @@ BNode *findMax(BNode *root)
 }
 
 /* adds BNode to tree */
-BNode* bstAdd(BNode *root, char *emp)
+struct BNode* bstAdd(BNode *root, char *emp)
 {
 
   if(root == NULL){
@@ -57,7 +57,7 @@ BNode* bstAdd(BNode *root, char *emp)
 }
 
 /* delete node from tree */
-BNode* bstDel(BNode *root, char *emp)
+struct BNode* bstDel(BNode *root, char *emp)
 {
   if(root == NULL)
     return root;
@@ -87,7 +87,8 @@ BNode* bstDel(BNode *root, char *emp)
   return root;
 }
 
-void bstPrint(struct BNode root)
+/* prints from a-z order */
+void bstPrint(BNode root)
 {
   if(root ==NULL)
     return;
@@ -97,6 +98,7 @@ void bstPrint(struct BNode root)
   bstPrint(root->right);
 }
 
+/* writed data to file */
 void writeToFile(BNode *node, char *filename)
 {
   FILE *fp;
@@ -112,6 +114,7 @@ void writeToFile(BNode *node, char *filename)
   writeToFile(node->right,fileName);
 }
 
+/* reads data from file */
 BNode *readFile(BNode *node, char *fileName)
 {
   FILE *fp;
@@ -130,7 +133,7 @@ BNode *readFile(BNode *node, char *fileName)
 
 void main()
 {
-  Bnode *node = NULL;
+  struct Bnode *node = NULL;
   int count = 1;
   int command =0;
   char *employee;
@@ -182,6 +185,3 @@ void main()
       printf("not a valid entry.\n");
   }
 }
-	     
-    
-    
