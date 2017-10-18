@@ -4,21 +4,19 @@
 #include "BST.h"		
 
 
-int main(){
-  struct BNode *root = NULL;
-  char *str;
-}
+
 /* creates new Bnode */
-  struct BNode* newBNode(struct BNode *root, char *newEmp){
-  struct BNode *np = (struct BNode*) malloc(sizeof(BNode));
-  np->str = malloc(strlen(newEmp));
+BNode *newBNode(char *newEmp)
+ {
+  BNode *np = (BNode *) malloc(sizeof(BNode));
+  np->str = malloc(strlen(newEmp)+1);
   np->left = NULL;
   np->right = NULL;
   return np;
 }
 
 /* goes through tree to find least-most root */
-struct BNode* findMin(struct BNode *root){
+BNode *findMin(struct BNode *root){
   if(root == NULL)
     return NULL;
   else if(root->left)
@@ -28,7 +26,8 @@ struct BNode* findMin(struct BNode *root){
 }
 
 /* goes through BNodes to find greatest root */
-struct BNode* findMax(struct BNode *root){
+BNode *findMax(BNode *root)
+{
   if(root == NULL)
     return NULL;
   else if(root->right)
@@ -38,7 +37,8 @@ struct BNode* findMax(struct BNode *root){
 }
 
 /* adds BNode to tree */
-struct BNode* bstAdd(struct BNode *root, char *emp){
+BNode* bstAdd(BNode *root, char *emp)
+{
 
   if(root == NULL){
     root = newBNode(employee);
@@ -57,7 +57,8 @@ struct BNode* bstAdd(struct BNode *root, char *emp){
 }
 
 /* delete node from tree */
-struct BNode* bstDel(struct BNode *root, char *emp){
+BNode* bstDel(BNode *root, char *emp)
+{
   if(root == NULL)
     return root;
 
@@ -86,7 +87,8 @@ struct BNode* bstDel(struct BNode *root, char *emp){
   return root;
 }
 
-void bstPrint(struct BNode root){
+void bstPrint(struct BNode root)
+{
   if(root ==NULL)
     return;
 
@@ -94,3 +96,92 @@ void bstPrint(struct BNode root){
   printf("<%s> ",root->str);
   bstPrint(root->right);
 }
+
+void writeToFile(BNode *node, char *filename)
+{
+  FILE *fp;
+  fp = fopen(fileName, "w");
+  if(fp == NULL){
+    print("File does not exist");
+    return;
+  }
+  if(node == NULL)
+    return;
+  writeToFile(node->left,fileName);
+  f printf(fp," %s\n", node->str);
+  writeToFile(node->right,fileName);
+}
+
+BNode *readFile(BNode *node, char *fileName)
+{
+  FILE *fp;
+  fp = fopen(fileName, "r");
+  int line = getc(fp);
+  char *name = (char *) malloc(sizeof(char));
+  while(line != EOF)
+    {
+      fscanf(fp," %s", name);
+      node = bstAdd(node, name);
+      line = getc(fp);
+    }
+  fclose(fp);
+  return node;
+}
+
+void main()
+{
+  Bnode *node = NULL;
+  int count = 1;
+  int command =0;
+  char *employee;
+  printf("Personal management system\n");
+
+  while(count ==1){
+    printf("Enter command \n 1. Add new employee.\n"
+	   "2. Remove employee.\n"
+	   "3. Add employee from file.\n"
+	   "4. Display  employees.\n"
+	   "5. Wrie employees name to file.\n"
+	   "6. Exit. \n");
+    scanf("%d", command);
+
+    if(command == 1)
+      {
+	printf("enter employee name.\n");
+	scanf("%s",employee);
+	addNode(node,employee);
+      }
+    else if(command ==2)
+      {
+	printf("Please enter employee name that will be deleted.\n");
+	scanf("%s",employee);
+	bstDel(node,employee);
+      }
+    else if(command ==3)
+      {
+	bstPrint(node);
+      }
+    if(command == 4)
+      {
+	printf("enter name of file to read.\n");
+	scanf("%s",employee);
+	readFile(node,employee);
+      }
+    else if(command ==5)
+      {
+	printf("enter name of file to write.\n");
+	scanf("%s",employee);
+	bstDel(node,employee);
+      }
+    else if(command ==6)
+      {
+	count = 0;
+	return;
+      }
+    else
+      printf("not a valid entry.\n");
+  }
+}
+	     
+    
+    

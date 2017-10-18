@@ -8,39 +8,33 @@ typedef struct BNode {
   char *str;
 } BNode;
 
-/* tree items */
-typedef struct {
-  BNode *root;
-} BST;
-
-
-//extern int llDoCheck;
-
 /* create new Tree*/
-BST *BSTAlloc();
+//BST *BSTAlloc();
 
 /* */
-void newBnode(BST *lp);
+sruct BNode *newBnode(BNode *lp, char *newEmp);
 
 /* */
-void findMin(BST *lp);
+struct BNode *findMin(BNode *lp);
 
 /* */
-void findMax(BST *lp);
+struct BNode *findMax(BNode *lp);
 
 /* */
-void bstAdd(BST *bp, char *e);
+struct BNode *bstAdd(BNode *bp, char *newEmp);
 
 /* */
-void bstDel(BST *lp, char *s);
+struct BNode *bstDel(BNode *lp, char *s);
 
 /* */
-void bstPrint(BST *lp);
+void bstPrint(BNode *lp);
 
 /* */
 void writeInFile(char *s);
 
 /* */
-void readFile();
+void readFile(BNode *node, char *fn);
+
+
 
 #endif
